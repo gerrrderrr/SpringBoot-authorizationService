@@ -1,15 +1,11 @@
 package ru.netology.authorizationservice.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.authorizationservice.authorities.Authorities;
 import ru.netology.authorizationservice.service.AuthorizationService;
 import ru.netology.authorizationservice.user.UserDto;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,10 +20,5 @@ public class AuthorizationController {
     @GetMapping("/authorize")
     public List<Authorities> getAuthorities(@Valid UserDto userDto) {
         return service.getAuthorities(userDto);
-    }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<String> constraintException(ConstraintViolationException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
