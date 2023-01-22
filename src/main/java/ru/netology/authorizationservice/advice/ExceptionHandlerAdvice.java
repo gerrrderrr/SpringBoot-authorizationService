@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.netology.authorizationservice.exceptions.IncorrectPassword;
 import ru.netology.authorizationservice.exceptions.InvalidCredentials;
 import ru.netology.authorizationservice.exceptions.UnauthorizedUser;
+import ru.netology.authorizationservice.exceptions.UserExist;
 
 import java.util.Objects;
 
@@ -34,5 +36,15 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(UnauthorizedUser.class)
     public ResponseEntity<String> unauthorizedUserHandler(UnauthorizedUser e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(UserExist.class)
+    public ResponseEntity<String> userExist(UserExist e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IncorrectPassword.class)
+    public ResponseEntity<String> userExist(IncorrectPassword e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

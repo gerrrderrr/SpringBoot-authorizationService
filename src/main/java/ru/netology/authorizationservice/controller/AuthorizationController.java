@@ -1,10 +1,11 @@
 package ru.netology.authorizationservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.netology.authorizationservice.authorities.Authorities;
+import ru.netology.authorizationservice.dto.UserDto;
+import ru.netology.authorizationservice.model.Authorities;
 import ru.netology.authorizationservice.service.AuthorizationService;
-import ru.netology.authorizationservice.user.UserDto;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,5 +21,10 @@ public class AuthorizationController {
     @GetMapping("/authorize")
     public List<Authorities> getAuthorities(@Valid UserDto userDto) {
         return service.getAuthorities(userDto);
+    }
+
+    @PostMapping("/signup")
+    public String signup(@Valid UserDto userDto) {
+        return service.signup(userDto);
     }
 }

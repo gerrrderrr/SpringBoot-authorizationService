@@ -8,7 +8,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import ru.netology.authorizationservice.exceptions.InvalidCredentials;
-import ru.netology.authorizationservice.user.UserDto;
+import ru.netology.authorizationservice.dto.UserDto;
 
 public class UserInfoArgumentResolver implements HandlerMethodArgumentResolver {
 
